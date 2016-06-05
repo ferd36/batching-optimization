@@ -1,5 +1,13 @@
 # Batching Optimization [![Build status](https://travis-ci.org/FrankAstier/batching-optimization.svg?branch=master)](https://travis-ci.org/FrankAstier/batching-optimization)
 
+<center>
+
+|                              Warning                             |
+|:----------------------------------------------------------------:|
+| Your mileage will vary depending  on the details of your system! |
+
+</center>
+
 Experiment description
 ----------------------
 In this experiment, we study the "batch optimization", that maximizes RAM bandwidth usage, by issuing a lot of
@@ -14,10 +22,6 @@ amount of work done on each value.
 
 The setup that produced the results in the folder linux.results is detailed here.
 Compilation was also verified with clang.
-
-|                              Warning                             |
-|:----------------------------------------------------------------:|
-| Your mileage will vary depending  on the details of your system! |
 
 Data file format
 ----------------
