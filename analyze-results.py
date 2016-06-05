@@ -186,7 +186,7 @@ def plot_speedups_for_p4():
     annotate('4.1X', xy=(12,24.719),xytext=(17,15), fontsize=16, weight='bold',
              arrowprops=dict(facecolor='black', shrink=0.05, width=1))
     axs[1].legend()
-    fig.suptitle("Speedup (50th) as a function of batch size for p4", fontsize=18, weight='bold')
+    fig.suptitle("Latency (50th) as a function of batch size for p4", fontsize=18, weight='bold')
     fig.savefig('speedups-for-p4.png')
     
 
@@ -253,7 +253,7 @@ def plot_speedups_for_p4_with_deviations():
         #ax.legend()
         ax.set_xlim(2,xlim)
         ax.set_title("Speedup variance, centered on 50th percentile")
-    fig.suptitle("Speedup variance\n(p4 payload - batch prefetch)", fontsize=18, weight='bold')
+    fig.suptitle("Speedup with variance\n(p4 payload - batch prefetch)", fontsize=18, weight='bold')
     fig.savefig('speedups-for-p4-with-deviations.png')
 
 plot_results_side_by_side()
