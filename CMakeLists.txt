@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.5)
-project(batching_experiments_results)
+cmake_minimum_required(VERSION 2.8)
+project(batching_experiment)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -DNDEBUG -O3")
 
 set(SOURCE_FILES batch_optimization.cpp)
 
-add_executable(batching_experiments_results ${SOURCE_FILES})
+add_executable(batching ${SOURCE_FILES})

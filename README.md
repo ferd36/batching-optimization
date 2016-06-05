@@ -1,4 +1,4 @@
-# Sandbox [![Build status](https://travis-ci.org/FrankAstier/batching-optimization.svg?branch=master)](https://travis-ci.org/FrankAstier/batching-optimization)
+# Batching Optimization [![Build status](https://travis-ci.org/FrankAstier/batching-optimization.svg?branch=master)](https://travis-ci.org/FrankAstier/batching-optimization)
 
 Experiment description
 ======================
