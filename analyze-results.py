@@ -59,7 +59,7 @@ def plot_results_side_by_side():
             else:
                 x,y = data[algo].keys()[:n_obs], data[algo].values()[:n_obs]
                 ax.plot(x, y, color=colors[c])
-        props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+        props = dict(boxstyle='round', facecolor='wheat', alpha=0.3)
         ax.text(0.75, 0.23, filename, transform=ax.transAxes, fontsize=14,
                 verticalalignment='top', bbox=props)
         #ax.set_title(filename, {'size': '11', 'weight': 'bold'})
@@ -119,7 +119,7 @@ def plot_speedups_for_payloads():
     ax = axs[1]
     for i in range(1,4):
         ax.plot(bests[:,0], bests[:,i], color=colors[i], label=algos[i])
-    ax.plot([4,4],[0,4.5], color='red')
+    ax.plot([4,4],[0,4.5], 'r--')
     ax.grid(True)
     ax.set_xlim(2,20)
     ax.set_ylim(1,)
@@ -168,16 +168,18 @@ def plot_speedups_for_p4():
     print x[best_i], y[best_i]
     ylim = axs[0].get_ylim()[1]
     axs[0].add_patch(Rectangle((8,0),12,ylim,facecolor='y', alpha=0.05, hatch='/'))
-    axs[0].set_xticks([5,8,10,15,20,25,30,40,50,60,70,80])
+    axs[0].set_xticks([5,8,12,15,20,25,30,40,50,60,70,80])
     axs[0].plot([2,80], [24.719,24.719], 'r--', alpha=0.4)
     axs[0].plot([8,8], [0,ylim], 'r--', alpha=0.6)
     axs[0].plot([20,20], [0,ylim], 'r--', alpha=0.4)
+    axs[0].plot([12,12], [0,ylim], 'r--', alpha=0.4)
     axs[1].add_patch(Rectangle((8,0),12,ylim,facecolor='y', alpha=0.05, hatch='/'))
     axs[1].plot([2,32], [24.719,24.719], 'r--', alpha=0.6)
     axs[1].plot([8,8], [0,ylim], 'r--', alpha=0.4)
     axs[1].plot([20,20], [0,ylim], 'r--', alpha=0.4)
+    axs[1].plot([12,12], [0,ylim], 'r--', alpha=0.4)
     axs[1].plot([12,12], [22,27], 'r', alpha=1)
-    axs[1].set_xticks([5,8,10,15,20,25,30])
+    axs[1].set_xticks([5,8,10,12,15,20,25,30])
     axs[1].set_yticks([20,24.719,30,35,40,60,80,100])
     annotate('4.1X', xy=(12,24.719),xytext=(17,15), fontsize=16, weight='bold',
              arrowprops=dict(facecolor='black', shrink=0.05, width=1))
@@ -209,16 +211,16 @@ def plot_speedups_for_p4_with_deviations():
     p75 = np.percentile(speedups, 75, axis=1)
     p05 = np.percentile(speedups, 5, axis=1)
     p95 = np.percentile(speedups, 95, axis=1)
-    ax.plot(x, p05, color='b', label='5th')
+    ax.plot(x, p05, 'b--', label='5th')
     ax.plot(x, p25, color='g', label='25th')
     ax.plot(x, p50, color='r', label='50th')
     ax.plot(x, p75, color='g', label='75th')
-    ax.plot(x, p95, color='r', label='95th')
+    ax.plot(x, p95, 'r--', label='95th')
     ax.fill_between(x, p05, p95, facecolor='yellow', alpha=0.1)
     ax.grid(True)
     ax.set_xlim(2,xlim)
     ax.set_ylim(2,)
-    ax.legend(loc='lower left', fancybox=True, framealpha=0.5)
+    ax.legend(loc='upper right', fancybox=True, framealpha=0.3)
     ylim = ax.get_ylim()[1]
     ax.plot([12,12], [0,ylim], 'r--', alpha=0.4)
     ax.plot([2,xlim],[M,M], 'r--', alpha=0.4)
@@ -243,13 +245,13 @@ def plot_speedups_for_p4_with_deviations():
         ax.plot(x, p052, color='b',label='5th')
         ax.plot(x, p952, color='r', label='95th')
         ax.fill_between(x, p052, p952, facecolor='yellow', alpha=0.1)
-        ax.legend(loc='lower left', fancybox=True, framealpha=0.5)
+        ax.legend(loc='lower right', fancybox=True, framealpha=0.3)
         #ax.hist(speedups.reshape(len(speedups)*100,1), bins=40)
         ax.grid(True)
         #ax.legend()
         ax.set_xlim(2,xlim)
         ax.set_title("Speedup variance, centered on 50th percentile")
-    fig.suptitle("Speedup variance (p4 payload)", fontsize=18, weight='bold')
+    fig.suptitle("Speedup variance\n(p4 payload - batch prefetch)", fontsize=18, weight='bold')
     fig.savefig('speedups-for-p4-with-deviations.png')
 
 plot_results_side_by_side()
