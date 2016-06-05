@@ -1,7 +1,7 @@
 # Batching Optimization [![Build status](https://travis-ci.org/FrankAstier/batching-optimization.svg?branch=master)](https://travis-ci.org/FrankAstier/batching-optimization)
 
 Experiment description
-======================
+----------------------
 In this experiment, we study the "batch optimization", that maximizes RAM bandwidth usage, by issuing a lot of
 load commands all at once (for a batch), then letting the processor run a "payload" of other instructions.
 Essentially, since all the loads from main memory are done in parallel, it is faster than issuing a load,
@@ -15,14 +15,18 @@ amount of work done on each value.
 The setup that produced the results in the folder linux.results is detailed here.
 Compilation was also verified with clang.
 
+|                              Warning                             |
+|:----------------------------------------------------------------:|
+| Your mileage will vary depending  on the details of your system! |
+
 Data file format
-================
+----------------
 The file name indicates the "payload": identity, payload, p1, p2... Refer to batch_optimization.cpp for details.
 Each file line has the following format:
 >     <algorithm name (2 words)> <batch_size (1 integer)> <latency1 (integer, microseconds)> <latency2> ...
 
 Setup information
-=================
+-----------------
 
 >     Hardware: Xeon-5 2620 v2
 >     OS: linux 6.6
@@ -39,7 +43,7 @@ Setup information
 >     Other: all runs with taskset -c 7 (pinned to CPU 7)
 
 Hardware details (lscpu)
-========================
+------------------------
 
 >     Architecture:          x86_64
 >     CPU op-mode(s):        32-bit, 64-bit

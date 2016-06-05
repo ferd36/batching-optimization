@@ -34,4 +34,6 @@ install:
 
 before_script:
   - cmake CMakeLists.txt
+
+script:
   - make
