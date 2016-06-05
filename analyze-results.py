@@ -114,6 +114,8 @@ def plot_speedups_for_payloads():
     ax.grid(True)
     ax.set_xlim(2,128)
     ax.set_ylim(1,)
+    ax.plot([4,4],[0,4.5], 'r--')
+    ax.set_xticks([1,4,20,40,60,80,100,120])
     ax.set_xlabel("payload size")
     ax.set_ylabel("speedup")
     ax = axs[1]
@@ -124,7 +126,7 @@ def plot_speedups_for_payloads():
     ax.set_xlim(2,20)
     ax.set_ylim(1,)
     ax.legend()
-    ax.set_xticks([0,1,4,5,10,15,20])
+    ax.set_xticks([1,4,5,10,15,20])
     ax.set_xlabel("payload size")
     ax.set_ylabel("speedup")
     fig.suptitle("Speedup (50th) as a function of payload", fontsize=18, weight='bold')
@@ -168,7 +170,7 @@ def plot_speedups_for_p4():
     print x[best_i], y[best_i]
     ylim = axs[0].get_ylim()[1]
     axs[0].add_patch(Rectangle((8,0),12,ylim,facecolor='y', alpha=0.05, hatch='/'))
-    axs[0].set_xticks([5,8,12,15,20,25,30,40,50,60,70,80])
+    axs[0].set_xticks([2,5,8,12,15,20,25,30,40,50,60,70,80])
     axs[0].plot([2,80], [24.719,24.719], 'r--', alpha=0.4)
     axs[0].plot([8,8], [0,ylim], 'r--', alpha=0.6)
     axs[0].plot([20,20], [0,ylim], 'r--', alpha=0.4)
@@ -179,8 +181,8 @@ def plot_speedups_for_p4():
     axs[1].plot([20,20], [0,ylim], 'r--', alpha=0.4)
     axs[1].plot([12,12], [0,ylim], 'r--', alpha=0.4)
     axs[1].plot([12,12], [22,27], 'r', alpha=1)
-    axs[1].set_xticks([5,8,10,12,15,20,25,30])
-    axs[1].set_yticks([20,24.719,30,35,40,60,80,100])
+    axs[1].set_xticks([2,5,8,10,12,15,20,25,30])
+    axs[1].set_yticks([0,20,24.719,30,35,40,60,80,100])
     annotate('4.1X', xy=(12,24.719),xytext=(17,15), fontsize=16, weight='bold',
              arrowprops=dict(facecolor='black', shrink=0.05, width=1))
     axs[1].legend()
