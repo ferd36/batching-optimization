@@ -12,7 +12,6 @@ addons:
     packages:
       - gcc-4.8
       - g++-4.8
-      - valgrind
 
 before_install:
   # CMake
@@ -36,4 +35,3 @@ install:
 before_script:
   - cmake CMakeLists.txt
   - make
-  - valgrind --leak-check=full batching

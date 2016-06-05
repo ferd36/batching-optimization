@@ -12,6 +12,15 @@ of processing on those values. "Batching" consists in grouping the lookup and pr
 small size. We want to understand what is the optimal batch size, and how the "batching optimization" depends on the
 amount of work done on each value.
 
+The setup that produced the results in the folder linux.results is detailed here.
+Compilation was also verified with clang.
+
+Data file format
+================
+The file name indicates the "payload": identity, payload, p1, p2... Refer to batch_optimization.cpp for details.
+Each file line has the following format:
+>     <algorithm name (2 words)> <batch_size (1 integer)> <latency1 (integer, microseconds)> <latency2> ...
+
 Setup information
 =================
 
