@@ -1,9 +1,16 @@
- Experiment description
- ======================
- In this experiment, we study the "batch optimization", that maximizes RAM bandwidth usage, by issuing a lot of load commands all
- at once (for a batch), then letting the processor run a "payload" of other instructions. Essentially,
- since all the loads from main memory are done in parallel, it is faster than issuing a load,
- processing an instruction, issuing another load, processing another instruction...
+# Sandbox [![Build status](https://travis-ci.org/FrankAstier/batching-optimization.svg?branch=master)](https://travis-ci.org/FrankAstier/batching-optimization)
+
+Experiment description
+======================
+In this experiment, we study the "batch optimization", that maximizes RAM bandwidth usage, by issuing a lot of
+load commands all at once (for a batch), then letting the processor run a "payload" of other instructions.
+Essentially, since all the loads from main memory are done in parallel, it is faster than issuing a load,
+processing an instruction, issuing another load, processing another instruction...
+
+We randomly access values in a big, statically allocated array (that doesn't fit in L3), and perform various amounts
+of processing on those values. "Batching" consists in grouping the lookup and processing of values into "batches" of
+small size. We want to understand what is the optimal batch size, and how the "batching optimization" depends on the
+amount of work done on each value.
 
 Setup information
 =================
