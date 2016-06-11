@@ -140,7 +140,7 @@ inline size_t hash64_2(size_t n, size_t seed1, size_t seed2) {
 // The various functions we want to use as "payload"
 typedef int (*PayloadFunction)(int);
 
-inline int id(int x) { return x; }
+
 
 /**
  * p1 is about 17 instructions in gcc 4.8.2
@@ -175,6 +175,7 @@ inline int p1(int x) {
 
 template <size_t n>
 inline int pn(int x) { for (size_t i = 0; i < n; ++i) x = p1(x); return x; }
+inline int id(int x) { return x; }
 inline int trig(int x) { return (int) ((int) ((int) cos(x) + sin(x)) / (1+log(x)));  }
 
 // The main testing function
@@ -192,10 +193,12 @@ long test(size_t M, size_t N, size_t n_reps, PayloadFunction F, int* data, Stats
   { // random accesses - no batching
     for (size_t k = 0; k < n_reps; ++k) {
       auto t1 = high_resolution_clock::now();
+
       for (size_t i = 0; i < N; ++i) {
         size_t pos = hash64_2(i, k, N) % M;
         certificate1 += F(data[pos]);
       }
+
       auto t2 = high_resolution_clock::now();
       times[k] = duration_cast<microseconds>(t2 - t1).count();
     }
@@ -208,6 +211,7 @@ long test(size_t M, size_t N, size_t n_reps, PayloadFunction F, int* data, Stats
       long certificate2 = 0;
       for (size_t k = 0; k < n_reps; ++k) {
         auto t1 = high_resolution_clock::now();
+
         size_t last = (N / batch_size) * batch_size;
         for (size_t i = 0; i < last; i += batch_size) {
           for (size_t j = 0; j < batch_size; ++j) {
@@ -222,6 +226,7 @@ long test(size_t M, size_t N, size_t n_reps, PayloadFunction F, int* data, Stats
           size_t pos = hash64_2(i, k, N) % M;
           certificate2 += F(data[pos]);
         }
+
         auto t2 = high_resolution_clock::now();
         times[k] = duration_cast<microseconds>(t2 - t1).count();
       }
@@ -281,6 +286,7 @@ long test(size_t M, size_t N, size_t n_reps, PayloadFunction F, int* data, Stats
       long certificate4 = 0;
       for (size_t k = 0; k < n_reps; ++k) {
         auto t1 = high_resolution_clock::now();
+
         for (size_t i = 0; i < N; ++i) {
           locations[i] = hash64_2(i, k, N) % M;
         }
@@ -302,6 +308,7 @@ long test(size_t M, size_t N, size_t n_reps, PayloadFunction F, int* data, Stats
           size_t pos = hash64_2(i, k, N) % M;
           certificate4 += F(data[pos]);
         }
+
         auto t2 = high_resolution_clock::now();
         times[k] = duration_cast<microseconds>(t2 - t1).count();
       }

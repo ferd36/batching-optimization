@@ -12,6 +12,12 @@ files = ['identity', 'math', 'p1',
          'p20', 'p24', 'p28',
          'p32', 'p64', 'p128']
 
+files2 = ['identity', 'math', 'p1',
+          'p2', 'p4', 'p5', 'p6',
+          'p7', 'p8', 'p9', 'p10', 'p12', 'p14', 'p16',
+          'p18', 'p20', 'p22', 'p24', 'p26', 'p28', 'p30',
+          'p32', 'p64', 'p128']
+
 # ... in that order
 algos = ['no batch', 'batch only', 'batch prefetch', 'locations batch']
 colors = ['red', 'blue', 'green', 'orange']
@@ -89,9 +95,9 @@ def plot_speedups_for_payloads():
     fig, axs = subplots(nrows=1, ncols=2)
     fig.set_figwidth(15)
     fig.set_size_inches(15, 9)
-    bests = np.zeros(shape=(len(files)-2, 4))
+    bests = np.zeros(shape=(len(files2)-2, 4))
     
-    for i, filename in enumerate(files):
+    for i, filename in enumerate(files2):
         if filename[0] != 'p':
             continue
         bests[i-2][0] = int(filename[1:])
@@ -213,21 +219,27 @@ def plot_speedups_for_p4_with_deviations():
     p75 = np.percentile(speedups, 75, axis=1)
     p05 = np.percentile(speedups, 5, axis=1)
     p95 = np.percentile(speedups, 95, axis=1)
-    ax.plot(x, p05, 'b--', label='5th')
+    ax.plot(x, p05, 'b--', label='95th')
     ax.plot(x, p25, color='g', label='25th')
     ax.plot(x, p50, color='r', label='50th')
     ax.plot(x, p75, color='g', label='75th')
-    ax.plot(x, p95, 'r--', label='95th')
+    ax.plot(x, p95, 'r--', label='5th')
     ax.fill_between(x, p05, p95, facecolor='yellow', alpha=0.1)
     ax.grid(True)
     ax.set_xlim(2,xlim)
     ax.set_ylim(2,)
     ax.legend(loc='upper right', fancybox=True, framealpha=0.3)
     ylim = ax.get_ylim()[1]
+    Mm = np.max(p95[5])
+    mm = np.min(p05[5])
+    med = p50[5]
+    ax.plot([2,12],[Mm,Mm],'r--', alpha=0.6) 
     ax.plot([12,12], [0,ylim], 'r--', alpha=0.4)
     ax.plot([2,xlim],[M,M], 'r--', alpha=0.4)
+    ax.plot([2,12],[mm,mm], 'r--', alpha=0.8)
+    ax.plot([2,12],[med,med], 'r--', alpha=0.8)
     ax.set_xticks([2,5,12,20,30,40,50,60,70,80])
-    ax.set_yticks([2,2.5,3.0,3.5,4.0,4.28,4.5])
+    ax.set_yticks([2,2.5,3.0,3.5,mm,4.0,med,Mm,M,4.5])
     ax.set_xlabel("batch size")
     ax.set_ylabel("speedup")
     #ax.set_title("Speedup variance")
@@ -244,8 +256,8 @@ def plot_speedups_for_p4_with_deviations():
             ax.plot(x, speedups50[:,i], color='g')
         p052 = np.percentile(speedups50, 5, axis=1)
         p952 = np.percentile(speedups50, 95, axis=1)
-        ax.plot(x, p052, color='b',label='5th')
-        ax.plot(x, p952, color='r', label='95th')
+        ax.plot(x, p052, color='r',label='5th')
+        ax.plot(x, p952, color='b', label='95th')
         ax.fill_between(x, p052, p952, facecolor='yellow', alpha=0.1)
         ax.legend(loc='lower right', fancybox=True, framealpha=0.3)
         #ax.hist(speedups.reshape(len(speedups)*100,1), bins=40)
