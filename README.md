@@ -70,3 +70,8 @@ Hardware details (lscpu)
 >     L2 cache:              256K
 >     L3 cache:              15360K
 >     NUMA node0 CPU(s):     0-11
+
+Results
+-------
+
+![alt tag](https://raw.githubusercontent.com/ferd36/batching-opimization/results-side-by-side.png)
