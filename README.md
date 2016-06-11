@@ -74,4 +74,4 @@ Hardware details (lscpu)
 Results
 -------
 
-![alt tag](https://raw.githubusercontent.com/ferd36/batching-opimization/results-side-by-side.png)
+[[https://raw.githubusercontent.com/ferd36/batching-optimization/results-side-by-side.png|alt=side-by-side]]
