@@ -75,3 +75,6 @@ Results
 -------
 
 ![results1](https://github.com/ferd36/batching-optimization/blob/master/results-side-by-side.png)
+![results2](https://github.com/ferd36/batching-optimization/blob/master/speedups-for-p4-with-deviations.png)
+![results3](https://github.com/ferd36/batching-optimization/blob/master/speedups-for-p4.png)
+![results4)(https://github.com/ferd36/batching-optimization/blob/master/speedups-for-payloads.png)
